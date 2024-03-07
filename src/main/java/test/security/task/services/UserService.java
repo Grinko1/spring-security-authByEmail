@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import test.security.task.entities.UserEntity;
 import test.security.task.repos.UserRepo;
 
+import java.util.List;
+
 @Service
 public class UserService {
     @Autowired
@@ -16,6 +18,9 @@ public class UserService {
     public void saveUser(UserEntity userEntity) {
         userEntity.setPassword(encoder.encode(userEntity.getPassword()));
         userRepo.save(userEntity);
+    }
 
+    public List<UserEntity> getAll() {
+        return userRepo.findAll();
     }
 }
